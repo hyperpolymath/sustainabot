@@ -1,135 +1,79 @@
-# Eco-Bot .gitignore
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# RSR-compliant .gitignore
 
-# =============================================================================
-# Build outputs
-# =============================================================================
-
-# Haskell
-dist-newstyle/
-.cabal-sandbox/
-cabal.sandbox.config
-*.hi
-*.o
-*.dyn_hi
-*.dyn_o
-.stack-work/
-
-# OCaml
-_build/
-*.native
-*.byte
-*.cmo
-*.cmi
-*.cmx
-*.cma
-*.cmxa
-*.a
-.merlin
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-.venv/
-venv/
-ENV/
-
-# ReScript
-*.res.js
-.bsb.lock
-
-# Deno
-.deno/
-
-# Node (only for ReScript compiler build, not runtime)
-node_modules/
-package-lock.json
-
-# Rust
-target/
-Cargo.lock
-
-# =============================================================================
-# IDE and Editor
-# =============================================================================
-
-.idea/
-.vscode/
+# OS & Editor
+.DS_Store
+Thumbs.db
 *.swp
 *.swo
 *~
-.DS_Store
-Thumbs.db
+.idea/
+.vscode/
 
-# =============================================================================
-# Environment and Secrets
-# =============================================================================
+# Build
+/target/
+/_build/
+/build/
+/dist/
+/out/
 
+# Dependencies
+/node_modules/
+/vendor/
+/deps/
+/.elixir_ls/
+
+# Rust
+# Cargo.lock  # Keep for binaries
+
+# Elixir
+/cover/
+/doc/
+*.ez
+erl_crash.dump
+
+# Julia
+*.jl.cov
+*.jl.mem
+/Manifest.toml
+
+# ReScript
+/lib/bs/
+/.bsb.lock
+
+# Python (SaltStack only)
+__pycache__/
+*.py[cod]
+.venv/
+
+# Ada/SPARK
+*.ali
+/obj/
+/bin/
+
+# Haskell
+/.stack-work/
+/dist-newstyle/
+
+# Chapel
+*.chpl.tmp.*
+
+# Secrets
 .env
-.env.local
-.env.*.local
+.env.*
 *.pem
 *.key
-credentials.json
-secrets.yaml
+secrets/
 
-# =============================================================================
-# Databases
-# =============================================================================
-
-# ArangoDB
-arangodb-data/
-
-# Virtuoso
-virtuoso-data/
-*.db
-*.db-journal
-
-# =============================================================================
-# Analysis Outputs
-# =============================================================================
-
-# Datalog
-facts/
-output/
-*.facts
-*.csv
-
-# Analysis results
-.eco-bot/
-analysis-results/
-*.sarif
-
-# =============================================================================
-# Testing
-# =============================================================================
-
-coverage/
-.coverage
+# Test/Coverage
+/coverage/
 htmlcov/
-.pytest_cache/
-.hypothesis/
 
-# =============================================================================
 # Logs
-# =============================================================================
-
-logs/
 *.log
+/logs/
+
+# Temp
+/tmp/
+*.tmp
+*.bak
