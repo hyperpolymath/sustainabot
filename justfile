@@ -31,3 +31,9 @@ check: lint test
 release VERSION:
     @echo "Releasing {{VERSION}}..."
 
+# Trigger automated checking
+
+github-scorecard:
+  @echo "Run manually: https://github.com/ossf/scorecard"
+
+
