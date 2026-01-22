@@ -2,7 +2,7 @@ image:[MPL-2.0,link="https://opensource.org/licenses/MPL-2.0"]
 image:[Palimpsest,link="https://github.com/hyperpolymath/palimpsest-licence"]
 
 
-// SPDX-License-Identifier: PMPL-1.0 OR AGPL-3.0-or-later
+// SPDX-License-Identifier: PMPL-1.0 OR PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2024-2025 hyperpolymath
 
 = SustainaBot
@@ -290,7 +290,7 @@ oikos-bot/
 
 == License
 
-This project is dual-licensed under **MIT** or **AGPL-3.0-or-later** (your choice).
+This project is dual-licensed under **MIT** or **PMPL-1.0-or-later** (your choice).
 
 We also encourage (but do not require) adherence to the principles of the https://github.com/hyperpolymath/palimpsest-license[Palimpsest License] — a framework for consent-based digital interaction.
 
