@@ -5,9 +5,13 @@
   `((version . "1.0.0")
     (symbolic-layer
       ((type . "scheme")
+       (engine . "Soufflé/Datalog")
        (reasoning . "deductive")
-       (verification . "formal")))
+       (verification . "formal-via-echidna")))
     (neural-layer
       ((embeddings . false)
-       (fine-tuning . false)))
-    (integration . ())))
+       (fine-tuning . false)
+       (role . "pattern-recognition-only")))
+    (integration 
+      ((method . "Symbolic-supervision")
+       (description . "Neural outputs must be validated by Datalog safety predicates.")))))
