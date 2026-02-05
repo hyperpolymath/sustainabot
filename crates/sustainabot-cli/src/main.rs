@@ -11,6 +11,7 @@ use clap::{Parser, Subcommand};
 use std::path::PathBuf;
 use sustainabot_analysis::analyze_file;
 use tracing::info;
+use walkdir::WalkDir;
 
 #[derive(Parser)]
 #[command(name = "sustainabot")]
@@ -81,8 +82,81 @@ fn main() -> Result<()> {
 
         Commands::Check { path, eco_threshold } => {
             info!("Checking directory: {}", path.display());
-            println!("Eco threshold: {}", eco_threshold);
-            println!("(Recursive directory analysis coming soon)");
+            println!("Checking directory: {} (eco threshold: {})\n", path.display(), eco_threshold);
+
+            let mut total_files = 0u32;
+            let mut files_below_threshold = 0u32;
+            let mut all_results = Vec::new();
+
+            for entry in WalkDir::new(&path)
+                .follow_links(false)
+                .into_iter()
+                .filter_entry(|e| {
+                    let name = e.file_name().to_str().unwrap_or("");
+                    !matches!(name, "target" | "node_modules" | ".git" | "dist" | "build" | ".cache")
+                })
+                .filter_map(|e| e.ok())
+            {
+                let entry_path = entry.path();
+                if !entry_path.is_file() {
+                    continue;
+                }
+
+                // Only analyze supported source files
+                let ext = entry_path.extension().and_then(|e| e.to_str()).unwrap_or("");
+                if !matches!(ext, "rs" | "js") {
+                    continue;
+                }
+
+                match analyze_file(entry_path) {
+                    Ok(results) => {
+                        total_files += 1;
+                        for result in &results {
+                            if result.health.eco_score.0 < eco_threshold {
+                                files_below_threshold += 1;
+                                println!(
+                                    "  BELOW THRESHOLD: {} :: {} (eco: {:.1}, threshold: {})",
+                                    entry_path.display(),
+                                    result.location.name.as_deref().unwrap_or("<anon>"),
+                                    result.health.eco_score.0,
+                                    eco_threshold
+                                );
+                            }
+                        }
+                        all_results.extend(results);
+                    }
+                    Err(e) => {
+                        info!("Skipping {}: {}", entry_path.display(), e);
+                    }
+                }
+            }
+
+            // Summary
+            println!("\n--- Summary ---");
+            println!("Files analyzed:        {}", total_files);
+            println!("Functions found:       {}", all_results.len());
+            println!("Below threshold:       {}", files_below_threshold);
+
+            if !all_results.is_empty() {
+                let avg_eco: f64 = all_results.iter().map(|r| r.health.eco_score.0).sum::<f64>()
+                    / all_results.len() as f64;
+                let avg_overall: f64 = all_results.iter().map(|r| r.health.overall).sum::<f64>()
+                    / all_results.len() as f64;
+                let total_energy: f64 = all_results.iter().map(|r| r.resources.energy.0).sum();
+                let total_carbon: f64 = all_results.iter().map(|r| r.resources.carbon.0).sum();
+
+                println!("Avg eco score:         {:.1}/100", avg_eco);
+                println!("Avg overall health:    {:.1}/100", avg_overall);
+                println!("Total est. energy:     {:.2} J", total_energy);
+                println!("Total est. carbon:     {:.4} gCO2e", total_carbon);
+            }
+
+            if files_below_threshold > 0 {
+                println!("\nResult: FAIL ({} functions below eco threshold {})", files_below_threshold, eco_threshold);
+                std::process::exit(1);
+            } else {
+                println!("\nResult: PASS (all functions meet eco threshold {})", eco_threshold);
+            }
         }
 
         Commands::SelfAnalyze => {

@@ -1,5 +1,5 @@
 ;;; STATE.scm - Project Checkpoint
-;;; oikos-bot (formerly git-eco-bot)
+;;; sustainabot (formerly oikos-bot / git-eco-bot)
 ;;; Format: Guile Scheme S-expressions
 ;;; Purpose: Preserve AI conversation context across sessions
 ;;; Reference: https://github.com/hyperpolymath/state.scm
@@ -12,26 +12,27 @@
 ;;;============================================================================
 
 (define metadata
-  '((version . "0.1.0-beta")
+  '((version . "0.2.0")
     (schema-version . "1.0")
     (created . "2025-12-15")
-    (updated . "2025-12-25")
-    (project . "oikos-bot")
-    (repo . "github.com/hyperpolymath/oikos-bot")))
+    (updated . "2026-02-05")
+    (project . "sustainabot")
+    (repo . "github.com/hyperpolymath/sustainabot")))
 
 ;;;============================================================================
 ;;; PROJECT CONTEXT
 ;;;============================================================================
 
 (define project-context
-  '((name . "oikos-bot")
-    (tagline . "**Oikos - Ecological & Economic Code Analysis (οἶκος)**")
-    (version . "0.1.0-beta")
-    (license . "AGPL-3.0-or-later")
+  '((name . "sustainabot")
+    (tagline . "Ecological & Economic Code Analysis - resource-aware design verification")
+    (version . "0.2.0")
+    (license . "PMPL-1.0-or-later")
     (rsr-compliance . "gold-target")
 
     (tech-stack
-     ((primary . "See repository languages")
+     ((primary . "Rust (workspace: 5 crates)")
+      (analysis . "tree-sitter AST parsing")
       (ci-cd . "GitHub Actions + GitLab CI + Bitbucket Pipelines")
       (security . "CodeQL + OSSF Scorecard")))))
 
@@ -40,35 +41,54 @@
 ;;;============================================================================
 
 (define current-position
-  '((phase . "v0.1 - Initial Setup and RSR Compliance")
+  '((phase . "v0.2 - Phase 1 Complete, Phase 2-3 Stubs")
     (overall-completion . 25)
 
     (components
-     ((rsr-compliance
+     ((sustainabot-metrics
+       ((status . "complete")
+        (completion . 90)
+        (notes . "AnalysisResult, ResourceUsage, HealthIndex, EcoScore types defined")))
+
+      (sustainabot-analysis
+       ((status . "active")
+        (completion . 40)
+        (notes . "tree-sitter Rust/JS parsing, function-level analysis, 933 lines")))
+
+      (sustainabot-eclexia
+       ((status . "stub")
+        (completion . 10)
+        (notes . "Eclexia integration placeholder, resource-aware principles")))
+
+      (sustainabot-cli
+       ((status . "active")
+        (completion . 60)
+        (notes . "analyze/check/self-analyze commands, recursive dir walking, eco threshold")))
+
+      (sustainabot-bot
+       ((status . "stub")
+        (completion . 5)
+        (notes . "GitHub App integration scaffolding only")))
+
+      (rsr-compliance
        ((status . "complete")
         (completion . 100)
-        (notes . "SHA-pinned actions, SPDX headers, multi-platform CI")))
-
-      (documentation
-       ((status . "foundation")
-        (completion . 30)
-        (notes . "README exists, META/ECOSYSTEM/STATE.scm added")))
-
-      (testing
-       ((status . "minimal")
-        (completion . 10)
-        (notes . "CI/CD scaffolding exists, limited test coverage")))
-
-      (core-functionality
-       ((status . "in-progress")
-        (completion . 25)
-        (notes . "Initial implementation underway")))))
+        (notes . "SHA-pinned actions, SPDX headers, multi-platform CI")))))
 
     (working-features
-     ("RSR-compliant CI/CD pipeline"
-      "Multi-platform mirroring (GitHub, GitLab, Bitbucket)"
-      "SPDX license headers on all files"
-      "SHA-pinned GitHub Actions"))))
+     ("tree-sitter AST parsing for Rust and JavaScript"
+      "Function-level resource estimation (Energy, Carbon, Duration, Memory)"
+      "EcoScore and EconScore health indices (0-100)"
+      "Quality score based on code complexity metrics"
+      "Single file analysis (sustainabot analyze <file>)"
+      "Recursive directory analysis (sustainabot check <dir>)"
+      "Eco threshold gating (--eco-threshold, exit 1 if below)"
+      "Self-analysis dogfooding mode"
+      "JSON and text output formats"
+      "Filtered directory walking (skips target/node_modules/.git/dist/build/.cache)"
+      "Summary statistics (avg eco, avg overall, total energy, total carbon)"
+      "RSR-compliant CI/CD pipeline"
+      "Multi-platform mirroring (GitHub, GitLab, Bitbucket)"))))
 
 ;;;============================================================================
 ;;; ROUTE TO MVP
@@ -76,33 +96,43 @@
 
 (define route-to-mvp
   '((target-version . "1.0.0")
-    (definition . "Stable release with comprehensive documentation and tests")
+    (definition . "Full ecological+economic analysis with fleet integration")
 
     (milestones
-     ((v0.2
-       ((name . "Core Functionality")
-        (status . "pending")
+     ((v0.1
+       ((name . "Phase 1 - Core Analysis")
+        (status . "complete")
         (items
-         ("Implement primary features"
-          "Add comprehensive tests"
-          "Improve documentation"))))
+         ("tree-sitter Rust/JS parsing" . done)
+         ("Function-level resource estimation" . done)
+         ("CLI with analyze command" . done)
+         ("EcoScore/EconScore metrics" . done))))
+
+      (v0.2
+       ((name . "Phase 1b - Directory Analysis")
+        (status . "complete")
+        (items
+         ("Recursive directory checking" . done)
+         ("Eco threshold gating" . done)
+         ("Summary statistics" . done))))
 
       (v0.5
-       ((name . "Feature Complete")
-        (status . "pending")
+       ((name . "Phase 2 - Deep Analysis")
+        (status . "planned")
         (items
-         ("All planned features implemented"
-          "Test coverage > 70%"
-          "API stability"))))
+         ("SARIF output format" . todo)
+         ("Dependency chain analysis" . todo)
+         ("Build system integration" . todo)
+         ("Benchmark calibration" . todo))))
 
       (v1.0
-       ((name . "Production Release")
-        (status . "pending")
+       ((name . "Phase 3 - Fleet Integration")
+        (status . "planned")
         (items
-         ("Comprehensive test coverage"
-          "Performance optimization"
-          "Security audit"
-          "User documentation complete"))))))))
+         ("GitHub App integration" . todo)
+         ("Shared context publishing" . todo)
+         ("Fleet coordinator wire-up" . todo)
+         ("CI/CD gate mode" . todo))))))))
 
 ;;;============================================================================
 ;;; BLOCKERS & ISSUES
@@ -110,22 +140,22 @@
 
 (define blockers-and-issues
   '((critical
-     ())  ;; No critical blockers
+     ())
 
     (high-priority
-     ())  ;; No high-priority blockers
+     ("Phase 2 analysis features are stubs only"))
 
     (medium-priority
-     ((test-coverage
-       ((description . "Limited test infrastructure")
-        (impact . "Risk of regressions")
-        (needed . "Comprehensive test suites")))))
+     ((resource-calibration
+       ((description . "Energy/carbon estimates are heuristic, not calibrated")
+        (impact . "Estimates may not reflect real-world resource usage")
+        (needed . "Benchmark suite for calibration")))))
 
     (low-priority
-     ((documentation-gaps
-       ((description . "Some documentation areas incomplete")
-        (impact . "Harder for new contributors")
-        (needed . "Expand documentation")))))))
+     ((additional-languages
+       ((description . "Only Rust and JavaScript supported")
+        (impact . "Cannot analyze other ecosystem languages")
+        (needed . "Add tree-sitter grammars for more languages")))))))
 
 ;;;============================================================================
 ;;; CRITICAL NEXT ACTIONS
@@ -133,17 +163,17 @@
 
 (define critical-next-actions
   '((immediate
-     (("Review and update documentation" . medium)
-      ("Add initial test coverage" . high)
-      ("Verify CI/CD pipeline functionality" . high)))
+     (("Add SARIF output format for IDE integration" . high)
+      ("Calibrate energy/carbon estimates with benchmarks" . high)
+      ("Wire up shared-context for fleet integration" . medium)))
 
     (this-week
-     (("Implement core features" . high)
-      ("Expand test coverage" . medium)))
+     (("Add dependency chain analysis" . high)
+      ("Implement build system cost estimation" . medium)))
 
     (this-month
-     (("Reach v0.2 milestone" . high)
-      ("Complete documentation" . medium)))))
+     (("Complete Phase 2 deep analysis" . high)
+      ("GitHub App integration for PR comments" . medium)))))
 
 ;;;============================================================================
 ;;; SESSION HISTORY
@@ -151,36 +181,35 @@
 
 (define session-history
   '((snapshots
+     ((date . "2026-02-05")
+      (session . "opus-continuation")
+      (accomplishments
+       ("Implemented recursive directory checking in sustainabot-cli"
+        "Added walkdir dependency for directory traversal"
+        "Eco threshold gating with exit code 1 on failure"
+        "Summary statistics: avg eco/overall scores, total energy/carbon"
+        "Filtered directory walking (skips target/node_modules/.git/dist/build/.cache)"
+        "Fixed STATE.scm: oikos-bot → sustainabot, AGPL → PMPL, updated completion"
+        "Verified compilation with cargo check (0 errors)"))
      ((date . "2025-12-25")
       (session . "github-app-manifest")
       (accomplishments
        ("Created .github/app.yml - GitHub App manifest for developer programme"
-        "Added manifest flow documentation to DEPLOY.md (Option A)"
-        "Configured permissions: contents:read, pull_requests:write, checks:write"
-        "Configured webhook events: pull_request, push, check_suite, installation"))
-      (notes . "GitHub App can now be registered via manifest flow for faster setup"))
+        "Added manifest flow documentation to DEPLOY.md"
+        "Configured permissions: contents:read, pull_requests:write, checks:write")))
      ((date . "2025-12-17")
       (session . "scm-security-review")
       (accomplishments
-       ("Fixed critical bug in security-policy.yml: HTTP URL check was detecting https:// instead of http://"
-        "Fixed dependabot.yml: npm ecosystem scoped to /bot-integration directory"
+       ("Fixed critical bug in security-policy.yml"
+        "Fixed dependabot.yml scoping"
         "Comprehensive review of all 10 GitHub workflows"
-        "Verified SHA-pinned actions across all workflows"
-        "Updated roadmap with current project status"))
-      (notes . "Security policy was incorrectly detecting secure HTTPS URLs instead of insecure HTTP"))
-     ((date . "2025-12-15")
-      (session . "security-fixes")
-      (accomplishments
-       ("Fixed CodeQL language matrix: removed python/js-ts (no source), added actions"
-        "OpenSSF Scorecard compliance verified"))
-      (notes . "CodeQL was configured for languages not present in repo"))
+        "Verified SHA-pinned actions across all workflows")))
      ((date . "2025-12-15")
       (session . "initial-state-creation")
       (accomplishments
        ("Added META.scm, ECOSYSTEM.scm, STATE.scm"
         "Established RSR compliance"
-        "Created initial project checkpoint"))
-      (notes . "First STATE.scm checkpoint created via automated script")))))
+        "Created initial project checkpoint"))))))
 
 ;;;============================================================================
 ;;; HELPER FUNCTIONS (for Guile evaluation)
@@ -206,12 +235,12 @@
 ;;;============================================================================
 
 (define state-summary
-  '((project . "oikos-bot")
-    (version . "0.1.0-beta")
-    (overall-completion . 30)
-    (next-milestone . "v0.2 - Core Functionality")
+  '((project . "sustainabot")
+    (version . "0.2.0")
+    (overall-completion . 25)
+    (next-milestone . "v0.5 - Phase 2 Deep Analysis")
     (critical-blockers . 0)
-    (high-priority-issues . 0)
-    (updated . "2025-12-26")))
+    (high-priority-issues . 1)
+    (updated . "2026-02-05")))
 
 ;;; End of STATE.scm
