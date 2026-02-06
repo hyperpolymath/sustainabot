@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+
+[package]
+name = "sustainabot-fleet"
+version = "0.1.0"
+edition = "2021"
+authors = ["Jonathan D.A. Jewell <jonathan.jewell@open.ac.uk>"]
+license = "PMPL-1.0-or-later"
+
+[dependencies]
+gitbot-shared-context = { path = "../../../gitbot-fleet/shared-context" }
+sustainabot-metrics = { path = "../sustainabot-metrics" }
+anyhow = "1"

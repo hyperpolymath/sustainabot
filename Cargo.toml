@@ -8,6 +8,7 @@ members = [
     "crates/sustainabot-analysis",
     "crates/sustainabot-metrics",
     "crates/sustainabot-eclexia",
+    "crates/sustainabot-fleet",
 ]
 
 [workspace.package]
